@@ -1,96 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CU AI HackSprint: Building Smart Campus Assistants</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-bg: #0a0a1f;
+            --primary-glow: #4f46e5;
+            --secondary-glow: #d946ef;
+        }
+
+        /* --- Base & Fonts --- */
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--dark-bg);
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        .font-heading { font-family: 'Orbitron', sans-serif; }
+
+        /* --- Animated Background --- */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                linear-gradient(rgba(10, 10, 31, 0.95), rgba(10, 10, 31, 0.95)),
+                repeating-linear-gradient(0deg, rgba(79, 70, 229, 0.15), rgba(79, 70, 229, 0.15) 1px, transparent 1px, transparent 20px),
+                repeating-linear-gradient(90deg, rgba(79, 70, 229, 0.15), rgba(79, 70, 229, 0.15) 1px, transparent 1px, transparent 20px);
+        }
+
+        /* --- Glitch Effect for Heading --- */
+        .glitch-text {
+            position: relative;
+            font-weight: 900;
+            color: white;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            overflow: hidden;
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--secondary-glow);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--primary-glow), 2px 2px var(--secondary-glow);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            100% { transform: skew(1deg, -2deg); }
+        }
+        @keyframes glitch-anim-1 {
+            0%, 100% { clip-path: inset(40% 0 40% 0); } 50% { clip-path: inset(10% 0 75% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0%, 100% { clip-path: inset(65% 0 10% 0); } 50% { clip-path: inset(90% 0 5% 0); }
+        }
+        
+        /* --- General UI & Animations --- */
+        .cyber-gradient-text {
+            background: linear-gradient(90deg, #5eead4, #d946ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cyber-button {
+            background: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow));
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+            transition: all 0.3s ease;
+        }
+        .cyber-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.8);
+        }
+        .cyber-card {
+            background: rgba(10, 10, 31, 0.7);
+            border: 1px solid var(--primary-glow);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .cyber-card:hover {
+            border-color: var(--secondary-glow);
+            transform: translateY(-8px);
+            box-shadow: 0 0 30px rgba(217, 70, 239, 0.5);
+        }
+
+        .animated-svg {
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(79, 70, 229, 0.6));
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        html { scroll-behavior: smooth; }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <canvas id="bg-canvas"></canvas>
+    
+    <header class="bg-transparent backdrop-blur-sm fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-4 border-b border-indigo-800/30">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-xl font-heading font-bold cyber-gradient-text">CU AI HACKSPRINT</a>
+                <nav class="hidden md:flex space-x-8 text-sm items-center">
+                    <a href="#intro" class="hover:text-fuchsia-400 transition-colors duration-300">Home</a>
+                    <a href="#problems" class="hover:text-fuchsia-400 transition-colors duration-300">Tracks</a>
+                    <a href="#timeline" class="hover:text-fuchsia-400 transition-colors duration-300">Timeline</a>
+                    <a href="#prizes" class="hover:text-fuchsia-400 transition-colors duration-300">Prizes</a>
+                    <a href="#register" class="cyber-button text-white font-bold py-2 px-4 rounded-md text-xs">Register</a>
+                </nav>
+                 <button id="mobile-menu-button" class="md:hidden text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-[#171630]/90 backdrop-blur-lg">
+            <a href="#intro" class="block py-2 px-4 text-sm hover:bg-indigo-900/50">Home</a>
+            <a href="#problems" class="block py-2 px-4 text-sm hover:bg-indigo-900/50">Tracks</a>
+            <a href="#timeline" class="block py-2 px-4 text-sm hover:bg-indigo-900/50">Timeline</a>
+            <a href="#prizes" class="block py-2 px-4 text-sm hover:bg-indigo-900/50">Prizes</a>
+            <a href="#register" class="block py-2 px-4 text-sm hover:bg-indigo-900/50">Register</a>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <section id="intro" class="min-h-screen flex items-center justify-center text-center px-4 fade-in-section">
+            <div>
+                <h1 class="text-5xl md:text-7xl font-heading glitch-text" data-text="CU AI HackSprint">CU AI HackSprint</h1>
+                <p class="max-w-3xl mx-auto mt-8 mb-6 text-gray-300 text-lg">
+                    Design the future of campus intelligence. A 2-day hackathon dedicated to building AI-powered assistants for Chandigarh University using Large Language Models.
+                </p>
+                <div class="my-8">
+                    <h3 class="font-heading text-xl mb-2 cyber-gradient-text">Registration Deadline</h3>
+                    <div id="countdown" class="text-4xl font-bold font-heading text-white"></div>
+                    <p class="text-sm text-gray-400 mt-1">Registration is open from July 28 to July 30.</p>
+                </div>
+                <a href="#register" class="cyber-button text-white font-bold py-3 px-8 rounded-lg text-lg">INITIATE REGISTRATION &rarr;</a>
+            </div>
+        </section>
+
+        <section id="problems" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 relative">
+                     <div class="absolute -top-20 left-1/2 -translate-x-1/2 opacity-30 md:opacity-50">
+                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="animated-svg">
+                            <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="#d946ef" stroke-width="1.5"/>
+                            <path d="M2 7L12 12L22 7" stroke="#d946ef" stroke-width="1.5"/>
+                            <path d="M12 12V22" stroke="#d946ef" stroke-width="1.5"/>
+                            <path d="M17 4.5L7 9.5" stroke="#4f46e5" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl font-heading font-bold cyber-gradient-text">Challenge Tracks</h2>
+                    <p class="text-gray-400 mt-2">Choose your mission. Innovate for the campus ecosystem.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="cyber-card p-6">
+                        <h3 class="text-xl font-bold text-teal-300 mb-2">Academic ChatBot</h3>
+                        <p class="text-sm text-gray-300">A department-specific bot for FAQs, syllabus queries, and mentor suggestions.</p>
+                    </div>
+                    <div class="cyber-card p-6">
+                        <h3 class="text-xl font-bold text-teal-300 mb-2">Admissions AI Assistant</h3>
+                        <p class="text-sm text-gray-300">A tool to handle queries from prospective students and guide them through admission.</p>
+                    </div>
+                    <div class="cyber-card p-6">
+                        <h3 class="text-xl font-bold text-teal-300 mb-2">Career Recommender</h3>
+                        <p class="text-sm text-gray-300">An AI tool to analyze student skills and recommend suitable courses or specializations.</p>
+                    </div>
+                    <div class="cyber-card p-6">
+                        <h3 class="text-xl font-bold text-teal-300 mb-2">Virtual Campus Tour</h3>
+                        <p class="text-sm text-gray-300">A web or VR-enabled virtual tour of CU's programs, labs, and facilities.</p>
+                    </div>
+                    <div class="cyber-card p-6">
+                        <h3 class="text-xl font-bold text-teal-300 mb-2">Peer & Alumni Network</h3>
+                        <p class="text-sm text-gray-300">A platform for new students to connect with seniors or alumni for mentoring.</p>
+                    </div>
+                     <div class="cyber-card p-6">
+                        <h3 class="text-xl font-bold text-teal-300 mb-2">Dynamic FAQ Generator</h3>
+                        <p class="text-sm text-gray-300">Use AI to automatically create/upkeep FAQs from chatbot interactions and queries.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-heading font-bold cyber-gradient-text">Event Timeline</h2>
+                    <p class="text-gray-400 mt-2">Synchronize your clocks. Here is the 2-day schedule.</p>
+                </div>
+                <div class="max-w-3xl mx-auto relative">
+                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-transparent via-indigo-500 to-transparent"></div>
+                    <div class="relative mb-8 flex items-center justify-start">
+                        <div class="hidden md:block w-5/12"></div>
+                        <div class="z-10"><div class="w-4 h-4 rounded-full bg-fuchsia-500 shadow-[0_0_10px_#d946ef]"></div></div>
+                        <div class="cyber-card p-4 w-full md:w-5/12 ml-4 md:ml-8"><strong class="text-fuchsia-400">Day 1, 9:30 AM:</strong> Registration & Inauguration</div>
+                    </div>
+                    <div class="relative mb-8 flex items-center justify-end md:justify-start">
+                        <div class="cyber-card p-4 w-full md:w-5/12 md:text-right mr-4 md:mr-8"><strong class="text-fuchsia-400">Day 1, 11:00 AM:</strong> Hacking Begins</div>
+                        <div class="z-10"><div class="w-4 h-4 rounded-full bg-fuchsia-500 shadow-[0_0_10px_#d946ef]"></div></div>
+                    </div>
+                    <div class="relative mb-8 flex items-center justify-start">
+                        <div class="hidden md:block w-5/12"></div>
+                        <div class="z-10"><div class="w-4 h-4 rounded-full bg-fuchsia-500 shadow-[0_0_10px_#d946ef]"></div></div>
+                        <div class="cyber-card p-4 w-full md:w-5/12 ml-4 md:ml-8"><strong class="text-fuchsia-400">Day 2, 12:30 PM:</strong> Final Presentations</div>
+                    </div>
+                     <div class="relative mb-8 flex items-center justify-end md:justify-start">
+                        <div class="cyber-card p-4 w-full md:w-5/12 md:text-right mr-4 md:mr-8"><strong class="text-fuchsia-400">Day 2, 2:00 PM:</strong> Evaluation & Prize Distribution</div>
+                        <div class="z-10"><div class="w-4 h-4 rounded-full bg-fuchsia-500 shadow-[0_0_10px_#d946ef]"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prizes" class="py-20 fade-in-section">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-12 relative">
+                     <div class="absolute -top-20 left-1/2 -translate-x-1/2 opacity-30 md:opacity-50">
+                         <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="animated-svg" style="animation-delay: -3s;">
+                            <path d="M19 4H5C3.89543 4 3 4.89543 3 6V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V6C21 4.89543 20.1046 4 19 4Z" stroke="#4f46e5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7 10H17" stroke="#d946ef" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                             <path d="M7 14H11" stroke="#d946ef" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl font-heading font-bold cyber-gradient-text">Rewards & Guidance</h2>
+                    <p class="text-gray-400 mt-2">Recognizing talent and providing expert support.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="cyber-card p-8 text-center">
+                        <h3 class="text-2xl font-bold text-teal-300 mb-3">Prizes & Recognition</h3>
+                         <p class="text-gray-300">Trophies and goodies for the winning teams.</p>
+                         <p class="text-gray-300 mt-2">Achievement certificates signed by Director, AIT-CSE.</p>
+                         <p class="text-gray-300 mt-2">e-Certificates for all participants.</p>
+                    </div>
+                     <div class="cyber-card p-8 text-center">
+                        <h3 class="text-2xl font-bold text-teal-300 mb-3">Mentors & Judges</h3>
+                         <p class="text-gray-300">Guidance from 4 Faculty Coordinators and 3 AI/NLP Mentors.</p>
+                         <p class="text-gray-300 mt-2">Judging by Internal Faculty Experts and an External Industry AI Specialist.</p>
+                         <p class="text-gray-300 mt-2">Meet alumni from top AI/ML companies.</p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section id="register" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-heading font-bold cyber-gradient-text">System Registration</h2>
+                    <p class="text-gray-400 mt-2">Team size is 3 members. One registration per team.</p>
+                </div>
+                <div class="max-w-2xl mx-auto cyber-card p-8">
+                    <form name="submit-to-google-sheet">
+                        <div class="grid md:grid-cols-2 gap-6 mb-4">
+                            <div>
+                                <label for="team-name" class="block font-medium mb-2">Team Name</label>
+                                <input type="text" id="team-name" name="TeamName" class="w-full bg-indigo-900/30 border border-indigo-700 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-fuchsia-500" required>
+                            </div>
+                            <div>
+                                <label for="leader-name" class="block font-medium mb-2">Team Leader's Name</label>
+                                <input type="text" id="leader-name" name="LeaderName" class="w-full bg-indigo-900/30 border border-indigo-700 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-fuchsia-500" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block font-medium mb-2">Team Leader's Email</label>
+                            <input type="email" id="email" name="Email" class="w-full bg-indigo-900/30 border border-indigo-700 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-fuchsia-500" required>
+                        </div>
+                        <div class="mb-6">
+                             <label for="problem-choice" class="block font-medium mb-2">Preferred Challenge Track</label>
+                             <select id="problem-choice" name="ProblemChoice" class="w-full bg-indigo-900/30 border border-indigo-700 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-fuchsia-500" required>
+                                <option value="" disabled selected>Select a track</option>
+                                <option value="Academic ChatBot">Academic ChatBot</option>
+                                <option value="Admissions AI Assistant">Admissions AI Assistant</option>
+                                <option value="Career Recommender">Career Recommender</option>
+                                <option value="Virtual Campus Tour">Virtual Campus Tour</option>
+                                <option value="Peer & Alumni Network">Peer & Alumni Network</option>
+                                <option value="Dynamic FAQ Generator">Dynamic FAQ Generator</option>
+                                <option value="Other">Other</option>
+                             </select>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="cyber-button text-white font-bold py-3 px-8 rounded-lg text-lg w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed">
+                                <span id="submit-text">SUBMIT DATA</span>
+                                <span id="loading-spinner" class="hidden">TRANSMITTING...</span>
+                            </button>
+                        </div>
+                    </form>
+                    <div id="message-box" class="mt-6 text-center text-lg p-4 rounded-md hidden"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-indigo-800/30 mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 CU AI HackSprint // All Systems Operational</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Canvas Background Animation ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray = [];
+        const numberOfParticles = 50;
+
+        class Particle {
+            constructor(x, y, size, color, speedX, speedY) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.color = color;
+                this.speedX = speedX;
+                this.speedY = speedY;
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+                this.x += this.speedX;
+                this.y += this.speedY;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                const size = Math.random() * 1.5 + 0.5;
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const speedX = Math.random() * 0.4 - 0.2;
+                const speedY = Math.random() * 0.4 - 0.2;
+                const color = 'rgba(79, 70, 229, 0.6)';
+                particlesArray.push(new Particle(x, y, size, color, speedX, speedY));
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // --- Fade-in sections on scroll ---
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('is-visible');
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+
+        // --- Countdown Timer ---
+        const countdownElement = document.getElementById('countdown');
+        const deadline = new Date("July 30, 2025 23:59:59").getTime();
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = deadline - now;
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                countdownElement.innerHTML = "REGISTRATION OFFLINE";
+                return;
+            }
+            const days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+            countdownElement.innerHTML = `${days}:${hours}:${minutes}:${seconds}`;
+        }, 1000);
+
+        // --- Google Sheet Form Submission ---
+        const form = document.forms['submit-to-google-sheet'];
+        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; // IMPORTANT: Replace with your script URL from the previous guide
+        const messageBox = document.getElementById('message-box');
+        const submitButton = form.querySelector('button[type="submit"]');
+        const submitText = document.getElementById('submit-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            submitButton.disabled = true;
+            submitText.classList.add('hidden');
+            loadingSpinner.classList.remove('hidden');
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    messageBox.textContent = 'Transmission Successful. Your team is registered.';
+                    messageBox.className = 'mt-6 text-center text-lg p-4 rounded-md bg-teal-500/20 text-teal-300';
+                    messageBox.classList.remove('hidden');
+                    form.reset();
+                })
+                .catch(error => {
+                    messageBox.textContent = 'Transmission Failed. Check connection and retry.';
+                    messageBox.className = 'mt-6 text-center text-lg p-4 rounded-md bg-red-500/20 text-red-300';
+                    messageBox.classList.remove('hidden');
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                    submitText.classList.remove('hidden');
+                    loadingSpinner.classList.add('hidden');
+                    setTimeout(() => messageBox.classList.add('hidden'), 5000);
+                });
+        });
+    </script>
+</body>
 </html>
